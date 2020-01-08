@@ -30,19 +30,19 @@ public class ChatTest {
   private static List<Process> processes = new ArrayList<>();
 
   static {
-    Runtime.getRuntime().addShutdownHook(new Thread() {
-      @Override
-      public void run() {
-        for (Process process : processes) {
-          try {
-            Processes.newPidProcess(process).destroyForcefully();
-          }
-          catch (Exception e) {
-            // ignore
-          }
-        }
+    Runtime.getRuntime()
+        .addShutdownHook(new Thread(ChatTest::stopProcesses));
+  }
+
+  private static void stopProcesses() {
+    for (Process process : processes) {
+      try {
+        Processes.newPidProcess(process).destroyForcefully();
       }
-    });
+      catch (Exception e) {
+        // ignore
+      }
+    }
   }
 
   @Test

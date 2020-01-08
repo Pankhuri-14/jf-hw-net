@@ -20,7 +20,7 @@ public class FutureAwait implements Runnable {
       future.get();
       countDownLatch.countDown();
     }
-    catch (Throwable e) {
+    catch (Exception e) {
       LongStream.range(0, countDownLatch.getCount()).forEach(c -> countDownLatch.countDown());
       throw new RuntimeException(e.getCause());
     }

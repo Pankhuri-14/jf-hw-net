@@ -1,5 +1,7 @@
 package org.zeroturnaround.jf.homework13;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,8 +25,8 @@ public class ChatClient {
     System.out.println("Connecting...");
 
     try (SocketChannel socket = SocketChannel.open(new InetSocketAddress(7070));
-         Writer writer = Channels.newWriter(socket, "UTF-8");
-         BufferedReader reader = new BufferedReader(Channels.newReader(socket, "UTF-8"))) {
+         Writer writer = Channels.newWriter(socket, UTF_8);
+         BufferedReader reader = new BufferedReader(Channels.newReader(socket, UTF_8))) {
       writer.write(name + "\n");
       writer.flush();
 
